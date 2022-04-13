@@ -39,6 +39,8 @@ fetch(apiURL + artist + "/" + song, {
 
         // .then(data => console.log(data.venues[1].name))
 };
+
+
 var displayVenue = function(venues){
 
     console.log(venues.venues[1].name);
