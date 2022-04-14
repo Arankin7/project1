@@ -10,9 +10,9 @@ var artistEl = document.querySelector("#artistSearch");
 var songEl = document.querySelector("#songSearch");
 var searchEl = document.querySelector("#searchBtn");
 var lyricContainerEl = document.querySelector("#lyricContainer");
+var lyricsText = document.querySelector("p");
 var zipCodeEl = document.querySelector("#zip");
 
-lyricsText = document.querySelector("p")
 
 searchEl.addEventListener("click", search);
 
