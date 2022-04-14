@@ -12,7 +12,7 @@ var searchEl = document.querySelector("#searchBtn");
 var lyricContainerEl = document.querySelector("#lyricContainer");
 var lyricsText = document.querySelector("p");
 var zipCodeEl = document.querySelector("#zip");
-
+var lyricsText = document.querySelector("p");
 
 searchEl.addEventListener("click", search);
 
@@ -41,6 +41,8 @@ fetch(apiURL + artist + "/" + song, {
 
         // .then(data => console.log(data.venues[1].name))
 };
+
+
 var displayVenue = function(venues){
 
     console.log(venues.venues[1].name);
