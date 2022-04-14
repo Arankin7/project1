@@ -7,30 +7,34 @@
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/grids-responsive-min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Api Testing</title>
+    <title>Music Search</title>
 </head>
 <body>
-    <header >API Testing</header>
-    <div>
-        <div>
-            <h2>Chose an artist</h2>
-            <input type="text" id="artistSearch">
+    <header >Music Search</header>
+    <!-- Search Section -->
+    <!-- Form? -->
+    <!-- <form class="pure-form pure-form-stacked"> -->
+        <fieldset class="pure-form-stacked">
+        <legend>Search for Stuff</legend>
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+            <label for="stacked-name">Artist's Name</label>
+            <!-- <h2>Chose an artist</h2> -->
+            <input type="text" id="artistSearch" placeholder="Rick Astley">
         </div>
-        <div>
-            <h2>Chose a song</h2>
-            <input type="text" id="songSearch">
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+            <label for="stacked-song">Song Name</label>
+            <!-- <h2>Chose a song</h2> -->
+            <input type="text" id="songSearch" placeholder="Never Gonna Give You Up">
         </div>
-        <div>
-            <h2>Zip Code</h2>
-            <input type="number" id="zip">
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+            <label for="stacked-zip">Postal Code</label>
+            <input type="number" id="zip" placeholder="90210">
         </div>
-        <button type="submit" id="searchBtn">Search</button>
-    </div>
+        <button type="submit" class="pure-button-primary" id="searchBtn">Search</button>
+    </fieldset>
+    </form>
 
-    <div id="lyricContainer">
-        <p></p>
-    </div>
-    
+    <div id="lyricContainer">    </div>
 
     <script src="./assets/js/script.js"></script>
 </body>
