@@ -10,27 +10,26 @@
     <title>Music Search</title>
 </head>
 <body>
-    <header >Music Search</header>
+    <header>Music Search</header>
     <!-- Search Section -->
-    <!-- Form? -->
-    <!-- <form class="pure-form pure-form-stacked"> -->
         <fieldset class="pure-form-stacked">
-        <legend>Search for Stuff</legend>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
-            <label for="stacked-name">Artist's Name</label>
-            <!-- <h2>Chose an artist</h2> -->
-            <input type="text" id="artistSearch" placeholder="Rick Astley">
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
-            <label for="stacked-song">Song Name</label>
-            <!-- <h2>Chose a song</h2> -->
-            <input type="text" id="songSearch" placeholder="Never Gonna Give You Up">
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
-            <label for="stacked-zip">Postal Code</label>
-            <input type="number" id="zip" placeholder="90210">
-        </div>
-        <button type="submit" class="pure-button-primary" id="searchBtn">Search</button>
+            <legend>Search for Stuff</legend>
+            <!-- Artist Search -->
+            <div class="pure-u-1">
+                <label>Artist's Name:</label>
+                <input type="text" id="artistSearch" placeholder="Rick Astley">
+            </div>
+            <!-- Song Search -->
+            <div class="pure-u-1">
+                <label for="stacked-song">Song Name:</label>
+                <input type="text" id="songSearch" placeholder="Never Gonna Give You Up">
+            </div>
+            <!-- Enter Postal Code -->
+            <div class="pure-u-1">
+                <label>Postal Code:</label>
+                <input type="tel" id="zip" placeholder="90210">
+            </div>
+            <button type="submit" class="pure-button-primary" id="searchBtn">Search</button>
     </fieldset>
     </form>
 
