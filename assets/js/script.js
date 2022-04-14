@@ -11,8 +11,7 @@ var songEl = document.querySelector("#songSearch");
 var searchEl = document.querySelector("#searchBtn");
 var lyricContainerEl = document.querySelector("#lyricContainer");
 var zipCodeEl = document.querySelector("#zip");
-
-lyricsText = document.querySelector("p")
+var lyricsText = document.querySelector("p");
 
 searchEl.addEventListener("click", search);
 
