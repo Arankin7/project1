@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 0 2px white;
+    background: radial-gradient(blue, teal);
+    box-shadow: 3px 0 5px black;
+}
+
+fieldset{
+    margin: 10px;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+legend{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#searchBtn {
+    margin: 10px;
+    border-radius: 4px;
+}
+
+#searchBtn:hover {
+    color: blue;
+    background-color: aliceblue;
+}
+
+label {
+    padding: 2px;
+}
+
+input {
+    box-shadow: 1px 1px 1px black;
+}
+
+#lyricContainer {
+    text-align: center;
+}
