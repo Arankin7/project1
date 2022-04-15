@@ -13,6 +13,7 @@ var lyricContainerEl = document.querySelector("#lyricContainer");
 var zipCodeEl = document.querySelector("#zip");
 var venueSearchEl = document.querySelector("#venueSearchBtn");
 var venueListEl = document.querySelector("#venueContainer");
+var lyricsText = document.querySelector("p");
 
 lyricSearchEl.addEventListener("click", lyricSearch);
 venueSearchEl.addEventListener("click", venueSearch);
@@ -61,6 +62,6 @@ var displayLyrics = function(lyrics){
     // console.log(lyrics);
     var lyricEl = document.createElement("span");
     lyricEl.textContent = lyrics.lyrics;
-    lyricContainerEl.appendChild(lyricEl);
+    lyricsText.innerText = lyricEl.textContent;
   
 }
