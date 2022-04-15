@@ -9,8 +9,6 @@ header {
     text-align: center;
     text-shadow: 1px 1px 3px black;
     padding: 25px;
-    /* background: radial-gradient(blue, teal);
-    box-shadow: 3px 0 5px black; */
     background-image: url("../images/stage.jpg");
     background-size: 100%;
     background-position: center;
@@ -40,6 +38,7 @@ img {
 #searchBtn:hover {
     color: blue;
     background-color: aliceblue;
+    
 }
 
 label {
@@ -57,4 +56,24 @@ input {
 li {
     list-style: none;
     padding: 2px;
+}
+
+.venueUrl {
+    margin: 1em;
+}
+
+.venueUrl:hover {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+footer {
+    color: cyan;
+    text-shadow: 0 0 1px black;
+    text-align: center;
+    font-weight: bold;
+    padding: 2em;
+    background-image: url("../images/stage.jpg");
+    background-size: 100%;
+    background-position: center;
 }
