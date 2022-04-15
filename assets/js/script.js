@@ -8,50 +8,57 @@ const seatGeekEventUrl = "https://api.seatgeek.com/2/venues?postal_code=";
 const apiURL = "https://api.lyrics.ovh/v1/"
 var artistEl = document.querySelector("#artistSearch");
 var songEl = document.querySelector("#songSearch");
-var searchEl = document.querySelector("#searchBtn");
+var lyricSearchEl = document.querySelector("#lyricSearchBtn");
 var lyricContainerEl = document.querySelector("#lyricContainer");
 var zipCodeEl = document.querySelector("#zip");
+var venueSearchEl = document.querySelector("#venueSearchBtn");
+var venueListEl = document.querySelector("#venueContainer");
 var lyricsText = document.querySelector("p");
 
-searchEl.addEventListener("click", search);
+lyricSearchEl.addEventListener("click", lyricSearch);
+venueSearchEl.addEventListener("click", venueSearch);
 
-function search(){
+function lyricSearch(){
     // console.log("Click");
 
     var artist = artistEl.value.trim();
     var song = songEl.value.trim();
-    var zipCode = zipCodeEl.value.trim();
+    
 
 fetch(apiURL + artist + "/" + song, {
     method:"GET",
 })
     .then(response => response.json().then(function(data){
-        displayStuff(data)
-    }))
+        displayLyrics(data)
+    })) 
+};
 
-   
-    // SeatGeek fetch
+// SeatGeek fetch
+function venueSearch(){
+    var zipCode = zipCodeEl.value.trim();
+    
 
     fetch(seatGeekEventUrl +  zipCode + seatGeekAuth)
         .then(response => response.json().then(function(data){
             displayVenue(data)
         }))
-
-
         // .then(data => console.log(data.venues[1].name))
-};
+}
 
 
 var displayVenue = function(venues){
 
-    console.log(venues.venues[1].name);
-    var eventEl = document.createElement("span");
-    eventEl.textContent = venues.venues[1].name;
-    lyricContainerEl.appendChild(eventEl);
+    // displays 5 closeby venues
 
+    for(var i = 0; i < 5; i++){
+        console.log(venues.venues[i]);
+        var venueEl = document.createElement("li");
+        venueEl.innerHTML = venues.venues[i].name;
+        venueListEl.appendChild(venueEl);
+    }
 }
 
-var displayStuff = function(lyrics, venues){
+var displayLyrics = function(lyrics){
     // console.log(lyrics);
     var lyricEl = document.createElement("span");
     lyricEl.textContent = lyrics.lyrics;

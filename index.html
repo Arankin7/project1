@@ -12,28 +12,36 @@
 <body>
     <header>Music Search</header>
     <!-- Search Section -->
-        <fieldset class="pure-form-stacked">
-            <legend>Search for Stuff</legend>
+
+    <fieldset class="pure-form-stacked">
+        <legend>Search for Lyrics</legend>
             <!-- Artist Search -->
-            <div class="pure-u-1">
+        <div class="pure-u-1">
                 <label>Artist's Name:</label>
                 <input type="text" id="artistSearch" placeholder="Rick Astley">
-            </div>
-            <!-- Song Search -->
-            <div class="pure-u-1">
+        </div>
+        <!-- Song Search -->
+        <div class="pure-u-1">
                 <label for="stacked-song">Song Name:</label>
                 <input type="text" id="songSearch" placeholder="Never Gonna Give You Up">
-            </div>
-            <!-- Enter Postal Code -->
-            <div class="pure-u-1">
-                <label>Postal Code:</label>
-                <input type="tel" id="zip" placeholder="90210">
-            </div>
-            <button type="submit" class="pure-button-primary" id="searchBtn">Search</button>
+         </div>
+        <button type="submit" class="pure-button-primary" id="lyricSearchBtn">Search</button>
+        <div id="lyricContainer"></div>
     </fieldset>
-    </form>
-
-    <div id="lyricContainer">    </div>
+    
+    
+    <fieldset class="pure-form-stacked">
+        <Legend>Search For Venues Nearby</Legend>
+           <!-- Enter Postal Code -->
+           <div class="pure-u-1">
+            <label>Postal Code:</label>
+            <input type="tel" id="zip" placeholder="90210">
+            <button type="submit" class="pure-button-primary" id="venueSearchBtn">Search</button>
+        </div>
+        <div id="venueContainer">
+            <ul id="venuelist"></ul>
+        </div>
+    </fieldset>
 
     <script src="./assets/js/script.js"></script>
 </body>
