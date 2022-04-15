@@ -13,7 +13,6 @@ var lyricContainerEl = document.querySelector("#lyricContainer");
 var zipCodeEl = document.querySelector("#zip");
 var venueSearchEl = document.querySelector("#venueSearchBtn");
 var venueListEl = document.querySelector("#venueContainer");
-var lyricsText = document.querySelector("p");
 
 lyricSearchEl.addEventListener("click", lyricSearch);
 venueSearchEl.addEventListener("click", venueSearch);
@@ -36,8 +35,6 @@ fetch(apiURL + artist + "/" + song, {
 // SeatGeek fetch
 function venueSearch(){
     var zipCode = zipCodeEl.value.trim();
-    
-
     fetch(seatGeekEventUrl +  zipCode + seatGeekAuth)
         .then(response => response.json().then(function(data){
             displayVenue(data)
@@ -47,6 +44,9 @@ function venueSearch(){
 
 
 var displayVenue = function(venues){
+
+    // clears out venue list before appending new list
+    venueListEl.textContent = "";
 
     // displays 5 closeby venues
 
@@ -59,9 +59,14 @@ var displayVenue = function(venues){
 }
 
 var displayLyrics = function(lyrics){
-    // console.log(lyrics);
+
+    // clears out lyrics before appending new lyrics
+    lyricContainerEl.textContent = "";
+
+    // displays lyrics of searched song
+    console.log(lyrics);
     var lyricEl = document.createElement("span");
-    lyricEl.textContent = lyrics.lyrics;
-    lyricsText.innerText = lyricEl.textContent;
+    lyricEl.innerHTML = lyrics.lyrics;
+    lyricContainerEl.appendChild(lyricEl);
   
 }
