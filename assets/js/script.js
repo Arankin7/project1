@@ -51,10 +51,15 @@ var displayVenue = function(venues){
     // displays 5 closeby venues
 
     for(var i = 0; i < 5; i++){
-        console.log(venues.venues[i]);
+        console.log(venues.venues[i].url);
         var venueEl = document.createElement("li");
-        venueEl.innerHTML = venues.venues[i].name;
+        var venueUrlEl = document.createElement("a");
+        venueUrlEl.classList = "venueUrl";
+        venueUrlEl.href = venues.venues[i].url;
+        venueUrlEl.innerHTML = venues.venues[i].name;
+        // venueEl.innerHTML =((venues.venues[i].name) + " URL: " + (venues.venues[i].url));
         venueListEl.appendChild(venueEl);
+        venueListEl.appendChild(venueUrlEl);
     }
 }
 
@@ -68,5 +73,4 @@ var displayLyrics = function(lyrics){
     var lyricEl = document.createElement("span");
     lyricEl.innerHTML = lyrics.lyrics;
     lyricContainerEl.appendChild(lyricEl);
-  
 }
