@@ -14,31 +14,54 @@
     <!-- Search Section -->
 
     <fieldset class="pure-form-stacked">
-        <legend>Search for Lyrics</legend>
-            <!-- Artist Search -->
-        <div class="pure-u-1">
-                <label>Artist's Name:</label>
-                <input type="text" id="artistSearch" placeholder="Rick Astley">
-        </div>
-        <!-- Song Search -->
-        <div class="pure-u-1">
-                <label for="stacked-song">Song Name:</label>
-                <input type="text" id="songSearch" placeholder="Never Gonna Give You Up">
-         </div>
-        <button type="submit" class="pure-button-primary" id="lyricSearchBtn">Search</button>
-        <div id="lyricContainer"></div>
+        <div class="pure-g">
+            <legend class="pure-u-1">Search for Lyrics</legend>
+
+            <div class="pure-u-1 pure-u-md-2-3">
+                <!-- Artist Search -->
+                <div class="pure-u-1 pure-u-md-2-3">
+                        <label>Artist's Name:</label>
+                        <input type="text" id="artistSearch" placeholder="Rick Astley">
+                </div>
+            
+                <!-- Song Search -->
+                <div class="pure-u-1 pure-u-md-2-3">
+                        <label for="stacked-song">Song Name:</label>
+                        <input type="text" id="songSearch" placeholder="Never Gonna Give You Up">
+                </div>
+            </div>
+            <!-- image -->
+                <div class="pure-u-1 pure-u-md-1-3">
+                    <img class="pure-img" src="./assets/images/vinyl.jpg">
+                </div>
+            
+            <div class="pure-u-1 pure-u-md-3-4">
+                <button type="submit" class="pure-button-primary" id="lyricSearchBtn">
+                    Search
+                </button>
+            </div>
+        <div class="pure-u-1" id="lyricContainer"></div>
     </fieldset>
     
     
     <fieldset class="pure-form-stacked">
-        <Legend>Search For Venues Nearby</Legend>
-           <!-- Enter Postal Code -->
-           <div class="pure-u-1">
-            <label>Postal Code:</label>
-            <input type="tel" id="zip" placeholder="90210">
-            <button type="submit" class="pure-button-primary" id="venueSearchBtn">Search</button>
+        <div class="pure-g">
+            <Legend class="pure-u-1">Search For Venues Nearby</Legend>
+
+            <!-- image -->
+            <div class="pure-u-1 pure-u-md-1-3">
+                <img class="pure-img" src="./assets/images/turntable.jpg">
+            </div>
+            <!-- empty div for spacing on md or larger screens -->
+            <div class="pure-u-md-1-3"></div>
+            <!-- Enter Postal Code -->
+            <div class="pure-u-1 pure-u-md-1-3">
+                <label>Postal Code:</label>
+                <input type="tel" id="zip" placeholder="90210">
+                <button type="submit" class="pure-button-primary" id="venueSearchBtn">Search</button>
+            </div>
         </div>
-        <div id="venueContainer">
+        <div class="pure-u-1" id="venueContainer">
             <ul id="venuelist"></ul>
         </div>
     </fieldset>
