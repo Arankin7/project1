@@ -2,16 +2,29 @@
     box-sizing: border-box;
 }
 
-header {
-    color: cyan;
-    font-size: 3em;
-    font-weight: bold;
+header {  
     text-align: center;
-    text-shadow: 1px 1px 3px black;
-    padding: 25px;
+    text-shadow: 1px 1px 4px black;
     background-image: url("../images/stage.jpg");
     background-size: 100%;
     background-position: center;
+}
+
+header > h1{
+    color: cyan;
+    font-size: 3em;
+    font-weight: bold;
+    padding: 15px 15px 0 15px;
+}
+
+.navBar {
+    padding: 0 15px 10px 10px;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 0px black;
+}
+
+.navBar li:hover{
+    font-size: 1.4em;
 }
 
 fieldset{
@@ -22,6 +35,7 @@ fieldset{
 legend{
     font-size: 1.2em;
     font-weight: bold;
+    border-bottom: 1px solid black;
 }
 
 img {
@@ -69,7 +83,7 @@ li {
 
 footer {
     color: cyan;
-    text-shadow: 0 0 1px black;
+    text-shadow: 1px 1px 1px black;
     text-align: center;
     font-weight: bold;
     padding: 2em;

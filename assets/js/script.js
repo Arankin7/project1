@@ -2,7 +2,8 @@ const seatGeekID = "MjY1NDM2MjJ8MTY0OTg3MDg4Ni41Mzg2OTM0";
 const seatGeekSec = "dde8a5132043b2b9bb1c3b0b0b5dc13870531280835149307fc9824a7b132267";
 const seatGeekAuth = "&client_id=" + seatGeekID + "&client_secret=" + seatGeekSec;
 const seatGeekEventUrl = "https://api.seatgeek.com/2/venues?postal_code=";
-const seatGeekRecUrl = "https://api.seatgeek.com/2/recommendations/performers?slug=";
+const seatGeekPerformerUrl = "https://api.seatgeek.com/2/performers?slug=";
+const seatGeekRecUrl = "https://api.seatgeek.com/2/recommendations/performers?performers.id=";
 
 
 // lyric info
@@ -51,11 +52,16 @@ function venueSearch(){
 // Recommendation Search
 function artistRecSearch(){
     var artist = artistRecEl.value.trim();
-    fetch(seatGeekRecUrl + artist + seatGeekAuth)
+
+    fetch(seatGeekPerformerUrl + artist + seatGeekAuth)
         .then(response => response.json().then(function(data){
+            console.log(data)
+            var artistId = (data.performers[0].id)
+            fetch(seatGeekRecUrl + artistId + seatGeekAuth)
+            .then(response => response.json().then(function(data){
             displayRec(data)
         }))
-        // .then(data => console.log(data.recommendations[0].performer.name));
+        }))
 }
 
 var displayRec = function(recommendations){
