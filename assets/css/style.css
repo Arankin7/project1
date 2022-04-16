@@ -58,11 +58,11 @@ li {
     padding: 2px;
 }
 
-.venueUrl {
+.urlLink {
     margin: 1em;
 }
 
-.venueUrl:hover {
+.urlLink:hover {
     font-weight: bold;
     font-size: 1.2em;
 }
