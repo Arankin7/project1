@@ -68,7 +68,8 @@ var displayRec = function(recommendations){
     recListEl.textContent = "";
     console.log(recommendations.recommendations);
 
-    for(var i = 0; i < 3; i++){
+    // Starts at index 3, displays 3 recommendations
+    for(var i = 3; i < 6; i++){
         // console.log(recommendations.recommendations[i])
 
         var recEl = document.createElement("li");
