@@ -10,31 +10,100 @@
     <title>Music Search</title>
 </head>
 <body>
-    <header >Music Search</header>
+    <header>
+        <h1 id="">Music Search</h1>
+        <ul class="navBar pure-g">
+            <li class="pure-u-1 pure-u-md-1-3">
+                <a href="#lyricSearch">Lyrics</a>
+            </li>
+            <li class="pure-u-1 pure-u-md-1-3">
+                <a href="#venueSearch">Venues</a>
+            </li>
+            <li class="pure-u-1 pure-u-md-1-3">
+                <a href="#recommendationSearch">Recommendations</a>
+            </li>
+        </ul>
+    </header>
     <!-- Search Section -->
-    <!-- Form? -->
-    <!-- <form class="pure-form pure-form-stacked"> -->
-        <fieldset class="pure-form-stacked">
-        <legend>Search for Stuff</legend>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
-            <label for="stacked-name">Artist's Name</label>
-            <!-- <h2>Chose an artist</h2> -->
-            <input type="text" id="artistSearch" placeholder="Rick Astley">
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
-            <label for="stacked-song">Song Name</label>
-            <!-- <h2>Chose a song</h2> -->
-            <input type="text" id="songSearch" placeholder="Never Gonna Give You Up">
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
-            <label for="stacked-zip">Postal Code</label>
-            <input type="number" id="zip" placeholder="90210">
-        </div>
-        <button type="submit" class="pure-button-primary" id="searchBtn">Search</button>
-    </fieldset>
-    </form>
 
+<<<<<<< HEAD
     <div id="lyricContainer"><p></p></div>
+=======
+    <fieldset class="pure-form-stacked" id="lyricSearch">
+        <div class="pure-g">
+            <legend class="pure-u-1">Search for Lyrics</legend>
+
+            <div class="pure-u-1 pure-u-md-2-3">
+                <!-- Artist Search -->
+                <div class="pure-u-1 pure-u-md-2-3">
+                        <label>Artist's Name:</label>
+                        <input type="text" id="artistSearch" placeholder="Rick Astley">
+                </div>
+            
+                <!-- Song Search -->
+                <div class="pure-u-1 pure-u-md-2-3">
+                        <label for="stacked-song">Song Name:</label>
+                        <input type="text" id="songSearch" placeholder="Never Gonna Give You Up">
+                </div>
+            </div>
+            <!-- image -->
+                <div class="pure-u-1 pure-u-md-1-3">
+                    <img class="pure-img" src="./assets/images/vinyl.jpg" alt="vinyl records">
+                </div>
+            
+            <div class="pure-u-1 pure-u-md-3-4">
+                <button type="submit" class="pure-button-primary" id="lyricSearchBtn">
+                    Search
+                </button>
+            </div>
+        <div class="pure-u-1" id="lyricContainer"></div>
+    </fieldset>
+    
+    <!-- Venues nearby -->
+    <fieldset class="pure-form-stacked" id="venueSearch">
+        <div class="pure-g">
+            <Legend class="pure-u-1">Search For Venues Nearby</Legend>
+
+            <!-- image -->
+            <div class="pure-u-1 pure-u-md-1-3">
+                <img class="pure-img" src="./assets/images/turntable.jpg" alt="turntable phonograph">
+            </div>
+            <!-- empty div for spacing on md or larger screens -->
+            <div class="pure-u-md-1-3"></div>
+            <!-- Enter Postal Code -->
+            <div class="pure-u-1 pure-u-md-1-3">
+                <label>Postal Code:</label>
+                <input type="tel" id="zip" placeholder="90210">
+                <button type="submit" class="pure-button-primary" id="venueSearchBtn">Search</button>
+            </div>
+        </div>
+        <div class="pure-u-1" id="venueContainer">
+        </div>
+    </fieldset>
+
+    <!-- Recommendations -->
+    <fieldset class="pure-form-stacked" id="recommendationSearch">
+        <div class="pure-g">
+            <legend class="pure-u-1">Search for Artist Recommendations</legend>
+
+            <div class="pure-u-1 pure-u-md-2-3">
+                <label>Artist:</label>
+                <input type="text" id="artistRec" placeholder="Elvis">
+                <button type="submit" class="pure-button-primary" id="recSearchBtn">Search</button>
+            </div>
+            <!-- image -->
+            <div class="pure-u-1 pure-u-md-1-3">
+                <img class="pure-img" src="./assets/images/headphones.jpg" alt="headphones and music player">
+            </div>
+        </div>
+        <div class="pure-u-1" id="recContainer">
+        </div>
+    </fieldset>
+
+    <footer>Powered by <a href="https://seatgeek.com/">SeatGeek</a> and <a href="https://lyrics.ovh/">Lyrics.ovh</a>
+        <br>
+    Styled with <a href="https://purecss.io/">Pure.css</a></footer>
+>>>>>>> db4bea092d7e1e8355aa22d38cd61fb8adfc4af0
 
     <script src="./assets/js/script.js"></script>
 </body>

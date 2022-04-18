@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+}
+
+header {  
+    text-align: center;
+    text-shadow: 1px 1px 4px black;
+    background-image: url("../images/viny2.jpg");
+    background-size: 100%;
+    background-position: center;
+}
+
+header > h1{
+    color: cyan;
+    font-size: 3em;
+    font-weight: bold;
+    padding: 15px 15px 0 15px;
+}
+
+.navBar {
+    padding: 0 15px 10px 10px;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 0px black;
+}
+
+.navBar li:hover{
+    font-size: 1.4em;
+}
+
+fieldset{
+    margin: 10px;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+legend{
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+
+img {
+    margin: 1em 0;
+    border: 1px solid black;
+    box-shadow: 1px 2px 3px;
+    opacity: 0.8;
+}
+#searchBtn {
+    margin: 10px;
+    border-radius: 4px;
+}
+
+#searchBtn:hover {
+    color: blue;
+    background-color: aliceblue;
+    
+}
+
+label {
+    padding: 2px;
+}
+
+input {
+    box-shadow: 1px 1px 1px black;
+}
+
+#lyricContainer {
+    text-align: center;
+}
+
+li {
+    list-style: none;
+    padding: 2px;
+}
+
+.urlLink {
+    margin: 1em;
+}
+
+.urlLink:hover {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+footer {
+    color: cyan;
+    text-shadow: 1px 1px 1px black;
+    text-align: center;
+    font-weight: bold;
+    padding: 2em;
+    background-image: url("../images/stage.jpg");
+    background-size: 100%;
+    background-position: center;
+}
