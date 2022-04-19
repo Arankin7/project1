@@ -119,3 +119,15 @@ footer {
 .pure-menu-link:hover {
     font-weight: bold;
 }
+
+.button-secondary {
+    background: rgb(66, 184, 221);
+    color: white;
+    margin: 10px;
+}
+
+.search-history {
+    display: flex;
+    flex-direction: column;
+    /* width: 50%; */
+}
