@@ -26,11 +26,16 @@ header > h1{
 .navBar {
     padding: 0 15px 10px 10px;
     font-size: 1.2em;
+    text-decoration: none;
     text-shadow: 1px 1px 0px black;
 }
 
-.navBar li:hover{
-    font-size: 1.4em;
+.navBar li{
+    border-style: solid;
+    border-color: cyan;
+    background: cyan;
+    border-radius: 8px;
+    display: inline-block;
 }
 
 fieldset{
