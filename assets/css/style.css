@@ -91,3 +91,11 @@ footer {
     background-size: 100%;
     background-position: center;
 }
+
+.pure-menu-link {
+    color: #000;
+}
+
+.pure-menu-link:hover {
+    font-weight: bold;
+}
