@@ -33,18 +33,25 @@ function lyricSearch(){
     var artist = artistEl.value.trim();
     var song = songEl.value.trim();
     
-
-fetch(apiURL + artist + "/" + song, {
-    method:"GET",
-})
-    .then(response => response.json().then(function(data){
-        if(response.ok){
-            displayLyrics(data)
-        }
-        else{
-            lyricContainerEl.appendChild(errText);
-        }
-    })) 
+    if(artist && song){
+        fetch(apiURL + artist + "/" + song, {
+            method:"GET",
+        })
+            .then(response => response.json().then(function(data){
+                if(response.ok){
+                    displayLyrics(data)
+                }
+                else{
+                    lyricContainerEl.appendChild(errText);
+                }
+            })) 
+    }
+    else if (!artist || !song){
+        var errEmpty = document.createElement("span");
+        errEmpty.textContent = "Please make sure to fill out all required fields.";
+        lyricContainerEl.appendChild(errEmpty);
+    }
+    
 };
 
 // SeatGeek fetch
