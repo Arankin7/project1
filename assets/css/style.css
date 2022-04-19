@@ -36,6 +36,7 @@ header > h1{
     background: cyan;
     border-radius: 8px;
     display: inline-block;
+    margin-top: 5px;
 }
 
 fieldset{
