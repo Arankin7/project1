@@ -81,8 +81,9 @@ input {
     box-shadow: 1px 1px 1px black;
 }
 
-#lyricContainer {
+#lyricsContainer {
     text-align: center;
+    margin-left: 50%;
 }
 
 li {

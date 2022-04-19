@@ -11,13 +11,16 @@ const apiURL = "https://api.lyrics.ovh/v1/"
 var artistEl = document.querySelector("#artistSearch");
 var songEl = document.querySelector("#songSearch");
 var lyricSearchEl = document.querySelector("#lyricSearchBtn");
-var lyricContainerEl = document.querySelector("#lyricContainer");
+var lyricContainerEl = document.querySelector("#lyricsContainer");
 var zipCodeEl = document.querySelector("#zip");
 var venueSearchEl = document.querySelector("#venueSearchBtn");
 var venueListEl = document.querySelector("#venueContainer");
 var recSearchEl = document.querySelector("#recSearchBtn");
 var recListEl = document.querySelector("#recContainer");
 var artistRecEl = document.querySelector("#artistRec");
+
+var errText = document.createElement("span");
+errText.textContent = "Sorry, there was a problem with your search.  Please try again.";
 
 recSearchEl.addEventListener("click", artistRecSearch)
 lyricSearchEl.addEventListener("click", lyricSearch);
@@ -30,13 +33,25 @@ function lyricSearch(){
     var artist = artistEl.value.trim();
     var song = songEl.value.trim();
     
-
-fetch(apiURL + artist + "/" + song, {
-    method:"GET",
-})
-    .then(response => response.json().then(function(data){
-        displayLyrics(data)
-    })) 
+    if(artist && song){
+        fetch(apiURL + artist + "/" + song, {
+            method:"GET",
+        })
+            .then(response => response.json().then(function(data){
+                if(response.ok){
+                    displayLyrics(data)
+                }
+                else{
+                    lyricContainerEl.appendChild(errText);
+                }
+            })) 
+    }
+    else if (!artist || !song){
+        var errEmpty = document.createElement("span");
+        errEmpty.textContent = "Please make sure to fill out all required fields.";
+        lyricContainerEl.appendChild(errEmpty);
+    }
+    
 };
 
 // SeatGeek fetch
@@ -44,7 +59,12 @@ function venueSearch(){
     var zipCode = zipCodeEl.value.trim();
     fetch(seatGeekEventUrl +  zipCode + seatGeekAuth)
         .then(response => response.json().then(function(data){
-            displayVenue(data)
+            if(response.ok){
+             displayVenue(data)
+            }
+            else{
+                venueListEl.appendChild(errText);
+            }
         }))
         // .then(data => console.log(data.venues[1].name))
 }
@@ -55,13 +75,18 @@ function artistRecSearch(){
 
     fetch(seatGeekPerformerUrl + artist + seatGeekAuth)
         .then(response => response.json().then(function(data){
-            console.log(data)
-            var artistId = (data.performers[0].id)
-            fetch(seatGeekRecUrl + artistId + seatGeekAuth)
-            .then(response => response.json().then(function(data){
-            displayRec(data)
-        }))
-        }))
+            if(response.ok && artistId){
+                console.log(data)
+                var artistId = (data.performers[0].id)
+                fetch(seatGeekRecUrl + artistId + seatGeekAuth)
+                .then(response => response.json().then(function(data){
+                displayRec(data)
+                }));
+            }
+            else if (!response.ok || !artistId){
+                recListEl.appendChild(errText);
+            }
+        }));
 }
 
 var displayRec = function(recommendations){
