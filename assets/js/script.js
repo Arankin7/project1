@@ -11,7 +11,7 @@ const apiURL = "https://api.lyrics.ovh/v1/"
 var artistEl = document.querySelector("#artistSearch");
 var songEl = document.querySelector("#songSearch");
 var lyricSearchEl = document.querySelector("#lyricSearchBtn");
-var lyricContainerEl = document.querySelector("#lyricContainer");
+var lyricContainerEl = document.querySelector("#lyricsContainer");
 var zipCodeEl = document.querySelector("#zip");
 var venueSearchEl = document.querySelector("#venueSearchBtn");
 var venueListEl = document.querySelector("#venueContainer");
@@ -37,7 +37,17 @@ fetch(apiURL + artist + "/" + song, {
     .then(response => response.json().then(function(data){
         displayLyrics(data)
     })) 
-};
+    artistHistory = document.querySelector("#artistSearch").value;
+    if (historyArr.indexOf(artistHistory) ===-1) {
+        historyArr.push(artistHistory);
+        localStorage.setItem('history', JSON.stringify(historyArr));
+        displayHistory(artistHistory);
+    }
+    if (!artistHistory) {
+        console.error("You Must Enter an artist!");
+        return;
+        console.log(artistHistory);
+    }
 
 // SeatGeek fetch
 function venueSearch(){
@@ -114,4 +124,4 @@ var displayLyrics = function(lyrics){
     var lyricEl = document.createElement("span");
     lyricEl.innerHTML = lyrics.lyrics;
     lyricContainerEl.appendChild(lyricEl);
-}
+}}
