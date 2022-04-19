@@ -1,3 +1,14 @@
+let searchHistory = JSON.parse(localStorage.getItem("music-search-history"));
+
+if(!searchHistory) {
+    searchHistory = {
+        "lyrics": [],
+        "venues": [],
+        "recommendations": [],
+        "events": []
+    }
+}
+
 const seatGeekID = "MjY1NDM2MjJ8MTY0OTg3MDg4Ni41Mzg2OTM0";
 const seatGeekSec = "dde8a5132043b2b9bb1c3b0b0b5dc13870531280835149307fc9824a7b132267";
 const seatGeekAuth = "&client_id=" + seatGeekID + "&client_secret=" + seatGeekSec;
@@ -19,6 +30,7 @@ var venueListEl = document.querySelector("#venueContainer");
 var recSearchEl = document.querySelector("#recSearchBtn");
 var recListEl = document.querySelector("#recContainer");
 var artistRecEl = document.querySelector("#artistRec");
+const mainContentEl = document.getElementById("main-content");
 
 
 const eventSearchBtnEl = document.getElementById("eventSearchBtn");
@@ -27,6 +39,11 @@ const eventContainerEl = document.getElementById("eventContainer")
 
 var errText = document.createElement("span");
 errText.textContent = "Sorry, there was a problem with your search.  Please try again.";
+
+const lyricHistoryContainerEl = document.getElementById("lyricHistoryContainer");
+const venueHistoryContainerEl = document.getElementById("venueHistoryContainer");
+const recommendationHistoryContainerEl = document.getElementById("recommendationHistoryContainer");
+const eventsHistoryContainerEl = document.getElementById("eventsHistoryContainer");
 
 
 recSearchEl.addEventListener("click", artistRecSearch)
@@ -48,6 +65,8 @@ function lyricSearch(){
             .then(response => response.json().then(function(data){
                 if(response.ok){
                     displayLyrics(data)
+                    searchHistory.lyrics.push({"artist": artist, "song": song})
+                    saveHistory();
                 }
                 else{
                     lyricContainerEl.appendChild(errText);
@@ -68,7 +87,9 @@ function venueSearch(){
     fetch(seatGeekEventUrl +  zipCode + seatGeekAuth)
         .then(response => response.json().then(function(data){
             if(response.ok){
-             displayVenue(data)
+             displayVenue(data);
+             searchHistory.venues.push(zipCode);
+             saveHistory();
             }
             else{
                 venueListEl.appendChild(errText);
@@ -88,7 +109,9 @@ function artistRecSearch(){
                 var artistId = (data.performers[0].id)
                 fetch(seatGeekRecUrl + artistId + seatGeekAuth)
                 .then(response => response.json().then(function(data){
-                displayRec(data)
+                displayRec(data);
+                searchHistory.recommendations.push(artist);
+                saveHistory();
                 }));
             }
             else if (!response.ok || !artistId){
@@ -161,6 +184,8 @@ function eventSearch() {
             if(response.ok) {
                 response.json().then(function(data) {
                     displayEvents(data.events);
+                    searchHistory.events.push(city);
+                    saveHistory();
                 })
             }
         })
@@ -194,3 +219,94 @@ function displayEvents(events) {
     }
     eventContainerEl.appendChild(eventUlEl);
 }
+
+function saveHistory() {
+    localStorage.setItem("music-search-history", JSON.stringify(searchHistory));
+}
+
+function displayHistory() {
+    const lyricHistory = searchHistory.lyrics;
+    const venueHistory = searchHistory.venues;
+    const recommendationHistory = searchHistory.recommendations;
+    const eventHistory = searchHistory.events;
+
+    if(lyricHistory.length > 0) {
+        lyricContainerEl.innerText = "";
+
+        const historyHeader = document.createElement("h4");
+        historyHeader.textContent = "Search History:";
+        lyricHistoryContainerEl.appendChild(historyHeader);
+
+        for(let i=0; i<lyricHistory.length; i++) {
+            const historyBtn = document.createElement("button");
+            historyBtn.className = "pure-button button-secondary lyrics";
+            historyBtn.textContent = `${lyricHistory[i].song} by ${lyricHistory[i].artist}`;
+            lyricHistoryContainerEl.appendChild(historyBtn);
+        }
+    }
+
+    if(venueHistory.length > 0) {
+        venueHistoryContainerEl.innerText = "";
+
+        const historyHeader = document.createElement("h4");
+        historyHeader.textContent = "Search History:";
+        venueHistoryContainerEl.appendChild(historyHeader);
+
+        for(let i=0; i<venueHistory.length; i++) {
+            const historyBtn = document.createElement("button");
+            historyBtn.className = "pure-button button-secondary venues";
+            historyBtn.textContent = venueHistory[i];
+            venueHistoryContainerEl.appendChild(historyBtn);
+        }
+    }
+
+    if(recommendationHistory.length > 0) {
+        recommendationHistoryContainerEl.innerText = "";
+        const historyHeader = document.createElement("h4");
+        historyHeader.textContent = "Search History:";
+        recommendationHistoryContainerEl.appendChild(historyHeader);
+
+        for(let i=0; i<recommendationHistory.length; i++) {
+            const historyBtn = document.createElement("button");
+            historyBtn.className = "pure-button button-secondary recommendations";
+            historyBtn.textContent = recommendationHistory[i];
+            recommendationHistoryContainerEl.appendChild(historyBtn);
+        }
+    }
+
+    if(eventHistory.length > 0) {
+        eventsHistoryContainerEl.innerText = "";
+
+        const historyHeader = document.createElement("h4");
+        historyHeader.textContent = "Search History:";
+        eventsHistoryContainerEl.appendChild(historyHeader);
+
+        for(let i=0; i<eventHistory.length; i++) {
+            const historyBtn = document.createElement("button");
+            historyBtn.className = "pure-button button-secondary events";
+            historyBtn.textContent = eventHistory[i];
+            eventsHistoryContainerEl.appendChild(historyBtn);
+        }
+    }
+}
+
+function searchHistoryBtnHandler(e) {
+    if(e.target.matches(".lyrics")) {
+        btnText = e.target.textContent.split("by");
+        artistEl.value = btnText[1].trim();
+        songEl.value = btnText[0].trim();
+    }
+    else if(e.target.matches(".venues")) {
+        zipCodeEl.value = e.target.textContent;
+    }
+    else if(e.target.matches(".recommendations")) {
+        artistRecEl.value = e.target.textContent;
+    }
+    else if(e.target.matches(".events")) {
+        eventCityEl.value = e.target.textContent;
+    }
+}
+
+mainContentEl.addEventListener("click", searchHistoryBtnHandler);
+
+displayHistory();
