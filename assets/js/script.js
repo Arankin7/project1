@@ -19,6 +19,9 @@ var recSearchEl = document.querySelector("#recSearchBtn");
 var recListEl = document.querySelector("#recContainer");
 var artistRecEl = document.querySelector("#artistRec");
 
+var errText = document.createElement("span");
+errText.textContent = "Sorry, there was a problem with your search.  Please try again.";
+
 recSearchEl.addEventListener("click", artistRecSearch)
 lyricSearchEl.addEventListener("click", lyricSearch);
 venueSearchEl.addEventListener("click", venueSearch);
@@ -35,7 +38,12 @@ fetch(apiURL + artist + "/" + song, {
     method:"GET",
 })
     .then(response => response.json().then(function(data){
-        displayLyrics(data)
+        if(response.ok){
+            displayLyrics(data)
+        }
+        else{
+            lyricContainerEl.appendChild(errText);
+        }
     })) 
 };
 
@@ -44,7 +52,12 @@ function venueSearch(){
     var zipCode = zipCodeEl.value.trim();
     fetch(seatGeekEventUrl +  zipCode + seatGeekAuth)
         .then(response => response.json().then(function(data){
-            displayVenue(data)
+            if(response.ok){
+             displayVenue(data)
+            }
+            else{
+                venueListEl.appendChild(errText);
+            }
         }))
         // .then(data => console.log(data.venues[1].name))
 }
@@ -55,13 +68,18 @@ function artistRecSearch(){
 
     fetch(seatGeekPerformerUrl + artist + seatGeekAuth)
         .then(response => response.json().then(function(data){
-            console.log(data)
-            var artistId = (data.performers[0].id)
-            fetch(seatGeekRecUrl + artistId + seatGeekAuth)
-            .then(response => response.json().then(function(data){
-            displayRec(data)
-        }))
-        }))
+            if(response.ok && artistId){
+                console.log(data)
+                var artistId = (data.performers[0].id)
+                fetch(seatGeekRecUrl + artistId + seatGeekAuth)
+                .then(response => response.json().then(function(data){
+                displayRec(data)
+                }));
+            }
+            else if (!response.ok || !artistId){
+                recListEl.appendChild(errText);
+            }
+        }));
 }
 
 var displayRec = function(recommendations){
