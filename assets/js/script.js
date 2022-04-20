@@ -107,7 +107,6 @@ function artistRecSearch(){
             var artistId = (data.performers[0].id)
             if(response.ok && artistId){
                 console.log(data)
-                
                 fetch(seatGeekRecUrl + artistId + seatGeekAuth)
                 .then(response => response.json().then(function(data){
                 displayRec(data);

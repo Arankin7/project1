@@ -1,6 +1,9 @@
 * {
     box-sizing: border-box;
 }
+:root{
+    --primary-color: rgb(66, 184, 221);
+}
 a {
     text-decoration: none;
   }
@@ -13,7 +16,7 @@ header {
 }
 
 header > h1{
-    color: cyan;
+    color: var(--primary-color);
     font-size: 3em;
     font-weight: bold;
     padding: 15px 15px 0 15px;
@@ -24,13 +27,15 @@ header > h1{
 }
 
 .navBar {
-    padding: 0 15px 10px 10px;
+    /* gap: 0.1em; */
+    padding: 0 10px 10px 10px;
     font-size: 1.2em;
     text-decoration: none;
     text-shadow: 1px 1px 0px black;
 }
 
 .navBar li{
+    color: black;
     border-style: solid;
     border-color: cyan;
     background: cyan;
@@ -84,7 +89,6 @@ input {
 
 #lyricsContainer {
     text-align: center;
-    margin-left: 50%;
 }
 
 li {
@@ -102,10 +106,9 @@ li {
 }
 
 footer {
-    color: cyan;
+    color: var(--primary-color);
     text-shadow: 1px 1px 1px black;
     text-align: center;
-    font-weight: bold;
     padding: 2em;
     background-image: url("../images/stage.jpg");
     background-size: 100%;
@@ -121,9 +124,11 @@ footer {
 }
 
 .button-secondary {
-    background: rgb(66, 184, 221);
+    background: var(--primary-color);
     color: white;
     margin: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px black;
 }
 
 .search-history {
