@@ -65,8 +65,21 @@ function lyricSearch(){
             .then(response => response.json().then(function(data){
                 if(response.ok){
                     displayLyrics(data)
-                    searchHistory.lyrics.push({"artist": artist, "song": song})
-                    saveHistory();
+                    var check = true;
+                    for (i = 0; i < searchHistory.lyrics.length; i++) {
+                        console.log(searchHistory.lyrics[i]);
+                        if (searchHistory.lyrics[i].artist == artist && searchHistory.lyrics[i].song == song){
+                            check = false;
+                            break;
+                        }
+                        else{
+                            console.log("false");
+                        }
+                    }
+                    if (check){
+                        searchHistory.lyrics.push({"artist": artist, "song": song})
+                        saveHistory();
+                    }
                 }
                 else{
                     lyricContainerEl.appendChild(errText);
