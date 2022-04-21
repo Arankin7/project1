@@ -100,9 +100,24 @@ function venueSearch(){
     fetch(seatGeekEventUrl +  zipCode + seatGeekAuth)
         .then(response => response.json().then(function(data){
             if(response.ok){
+                var check = true;
+                for (i = 0; i < searchHistory.venues.length; i++) {
+                    console.log(searchHistory.venues[i]);
+                    if (searchHistory.venues[i] == zipCode){
+                        check = false;
+                        break;
+                    }
+                    else{
+                        console.log("false");
+                    }
+                }
+                if (check){
+                    searchHistory.venues.push(zipCode);
+                    saveHistory();
+                }
              displayVenue(data);
-             searchHistory.venues.push(zipCode);
-             saveHistory();
+            //  searchHistory.venues.push(zipCode);
+            //  saveHistory();
             }
             else{
                 venueListEl.appendChild(errText);
