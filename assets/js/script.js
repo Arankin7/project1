@@ -134,12 +134,25 @@ function artistRecSearch(){
         .then(response => response.json().then(function(data){
             var artistId = (data.performers[0].id)
             if(response.ok && artistId){
+                var check = true;
+                for (i = 0; i < searchHistory.recommendations.length; i++) {
+                    console.log(searchHistory.recommendations[i]);
+                    if (searchHistory.recommendations[i] == artist){
+                        check = false;
+                        break;
+                    }
+                    else{
+                        console.log("false");
+                    }
+                }
                 console.log(data)
                 fetch(seatGeekRecUrl + artistId + seatGeekAuth)
                 .then(response => response.json().then(function(data){
                 displayRec(data);
-                searchHistory.recommendations.push(artist);
-                saveHistory();
+                if (check){
+                    searchHistory.recommendations.push(artist);
+                    saveHistory();
+                }
                 }));
             }
             else if (!response.ok || !artistId){
