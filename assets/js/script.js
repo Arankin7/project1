@@ -100,18 +100,7 @@ function venueSearch(){
     fetch(seatGeekEventUrl +  zipCode + seatGeekAuth)
         .then(response => response.json().then(function(data){
             if(response.ok){
-                var check = true;
-                for (i = 0; i < searchHistory.venues.length; i++) {
-                    console.log(searchHistory.venues[i]);
-                    if (searchHistory.venues[i] == zipCode){
-                        check = false;
-                        break;
-                    }
-                    else{
-                        console.log("false");
-                    }
-                }
-                if (check){
+                if (duplicateCheck(searchHistory.venues, zipCode)){
                     searchHistory.venues.push(zipCode);
                     saveHistory();
                 }
@@ -134,22 +123,11 @@ function artistRecSearch(){
         .then(response => response.json().then(function(data){
             var artistId = (data.performers[0].id)
             if(response.ok && artistId){
-                var check = true;
-                for (i = 0; i < searchHistory.recommendations.length; i++) {
-                    console.log(searchHistory.recommendations[i]);
-                    if (searchHistory.recommendations[i] == artist){
-                        check = false;
-                        break;
-                    }
-                    else{
-                        console.log("false");
-                    }
-                }
                 console.log(data)
                 fetch(seatGeekRecUrl + artistId + seatGeekAuth)
                 .then(response => response.json().then(function(data){
                 displayRec(data);
-                if (check){
+                if (duplicateCheck(searchHistory.recommendations, artist)){
                     searchHistory.recommendations.push(artist);
                     saveHistory();
                 }
@@ -159,6 +137,28 @@ function artistRecSearch(){
                 recListEl.appendChild(errText);
             }
         }));
+}
+
+//checks to make sure duplicate items don't get added to the users history
+//doesn't work on lyricSearch()
+function duplicateCheck(history, check){
+    bool = true;
+    for (i = 0; i < history.length; i++) {
+        console.log(history[i]);
+        if (history[i] == check){
+            bool = false;
+            break;
+        }
+        else{
+            console.log("false");
+        }
+    }
+    if (bool){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 var displayRec = function(recommendations){
