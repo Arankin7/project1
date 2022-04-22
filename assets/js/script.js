@@ -79,6 +79,7 @@ function lyricSearch(){
                     if (check){
                         searchHistory.lyrics.push({"artist": artist, "song": song})
                         saveHistory();
+                        displayHistory();
                     }
                 }
                 else{
@@ -100,9 +101,10 @@ function venueSearch(){
     fetch(seatGeekEventUrl +  zipCode + seatGeekAuth)
         .then(response => response.json().then(function(data){
             if(response.ok){
-                if (duplicateCheck(searchHistory.venues, zipCode)){
+                if (!searchHistory.venues.includes(zipCode)){
                     searchHistory.venues.push(zipCode);
                     saveHistory();
+                    displayHistory();
                 }
              displayVenue(data);
             //  searchHistory.venues.push(zipCode);
@@ -128,9 +130,10 @@ function artistRecSearch(){
                 fetch(seatGeekRecUrl + artistId + seatGeekAuth)
                 .then(response => response.json().then(function(data){
                 displayRec(data);
-                if (duplicateCheck(searchHistory.recommendations, artist)){
+                if (!searchHistory.recommendations.includes(artist)){
                     searchHistory.recommendations.push(artist);
                     saveHistory();
+                    displayHistory();
                 }
                 }));
             }
@@ -142,25 +145,25 @@ function artistRecSearch(){
 
 //checks to make sure duplicate items don't get added to the users history
 //doesn't work on lyricSearch()
-function duplicateCheck(history, check){
-    bool = true;
-    for (i = 0; i < history.length; i++) {
-        console.log(history[i]);
-        if (history[i] == check){
-            bool = false;
-            break;
-        }
-        else{
-            console.log("false");
-        }
-    }
-    if (bool){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
+// function duplicateCheck(history, check){
+//     bool = true;
+//     for (i = 0; i < history.length; i++) {
+//         console.log(history[i]);
+//         if (history[i] == check){
+//             bool = false;
+//             break;
+//         }
+//         else{
+//             console.log("false");
+//         }
+//     }
+//     if (bool){
+//         return true;
+//     }
+//     else{
+//         return false;
+//     }
+// }
 
 var displayRec = function(recommendations){
     recListEl.textContent = "";
@@ -227,8 +230,13 @@ function eventSearch() {
             if(response.ok) {
                 response.json().then(function(data) {
                     displayEvents(data.events);
-                    searchHistory.events.push(city);
-                    saveHistory();
+                    if (!searchHistory.events.includes(city)) {
+                        searchHistory.events.push(city);
+                        saveHistory();
+                        displayHistory();
+                    }
+                    
+                   
                 })
             }
         })
@@ -274,7 +282,7 @@ function displayHistory() {
     const eventHistory = searchHistory.events;
 
     if(lyricHistory.length > 0) {
-        lyricContainerEl.innerText = "";
+        lyricHistoryContainerEl.innerHTML = "";
 
         const historyHeader = document.createElement("h4");
         historyHeader.textContent = "Search History:";
