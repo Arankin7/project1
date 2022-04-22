@@ -13,7 +13,7 @@ const seatGeekID = "MjY1NDM2MjJ8MTY0OTg3MDg4Ni41Mzg2OTM0";
 const seatGeekSec = "dde8a5132043b2b9bb1c3b0b0b5dc13870531280835149307fc9824a7b132267";
 const seatGeekAuth = "&client_id=" + seatGeekID + "&client_secret=" + seatGeekSec;
 const seatGeekEventUrl = "https://api.seatgeek.com/2/venues?postal_code=";
-const seatGeekPerformerUrl = "https://api.seatgeek.com/2/performers?slug=";
+const seatGeekPerformerUrl = "https://api.seatgeek.com/2/performers?q=";
 const seatGeekRecUrl = "https://api.seatgeek.com/2/recommendations/performers?performers.id=";
 const seatGeekEventByCityUrl = "https://api.seatgeek.com/2/events?venue.city="
 
@@ -118,6 +118,8 @@ function venueSearch(){
 // Recommendation Search
 function artistRecSearch(){
     var artist = artistRecEl.value.trim();
+    
+    console.log(artist);
 
     fetch(seatGeekPerformerUrl + artist + seatGeekAuth)
         .then(response => response.json().then(function(data){
@@ -165,18 +167,20 @@ var displayRec = function(recommendations){
     recListEl.textContent = "";
     console.log(recommendations.recommendations);
 
-    // Starts at index 3, displays 3 recommendations
-    for(var i = 3; i < 6; i++){
-        // console.log(recommendations.recommendations[i])
+    for(var i = 0; i < 5; i++){
+        if(recommendations.recommendations[i].performer.type == "band"){
+            console.log(recommendations.recommendations[i].performer.type);
+            // console.log(recommendations.recommendations[i]);
 
-        var recEl = document.createElement("li");
-        var recUrlEl = document.createElement("a");
-        recUrlEl.classList = "urlLink";
-        recUrlEl.href = recommendations.recommendations[i].performer.url;
-        recUrlEl.innerHTML = recommendations.recommendations[i].performer.name;
+            var recEl = document.createElement("li");
+            var recUrlEl = document.createElement("a");
+            recUrlEl.classList = "urlLink";
+            recUrlEl.href = recommendations.recommendations[i].performer.url;
+            recUrlEl.innerHTML = recommendations.recommendations[i].performer.name;
 
-        recListEl.appendChild(recEl);
-        recListEl.appendChild(recUrlEl);
+            recListEl.appendChild(recEl);
+            recListEl.appendChild(recUrlEl);
+        }        
     }
 }
 
