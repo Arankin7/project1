@@ -112,7 +112,6 @@ function venueSearch(){
                 venueListEl.appendChild(errText);
             }
         }))
-        // .then(data => console.log(data.venues[1].name))
 }
 
 // Recommendation Search
@@ -184,7 +183,6 @@ var displayRec = function(recommendations){
     }
 }
 
-
 var displayVenue = function(venues){
 
     // clears out venue list before appending new list
@@ -212,9 +210,9 @@ var displayLyrics = function(lyrics){
     lyricContainerEl.textContent = "";
 
     // displays lyrics of searched song
-    console.log(lyrics);
+    console.log(lyrics.lyrics);
     var lyricEl = document.createElement("span");
-    lyricEl.innerHTML = lyrics.lyrics;
+    lyricEl.innerText = lyrics.lyrics;
     lyricContainerEl.appendChild(lyricEl);
 }
 
